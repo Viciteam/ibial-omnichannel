@@ -1,4 +1,4 @@
-import Logo from './Logo'
-import VuetifyLogo from './VuetifyLogo'
+import Header from './Header'
+import Drawer from './Drawer'
 
-export { Logo, VuetifyLogo }
+export { Header, Drawer }
