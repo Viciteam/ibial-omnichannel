@@ -28,7 +28,7 @@ deploy:
     - ‘[[ -f /.dockerenv ]] && echo -e “Host *\n\tStrictHostKeyChecking no\n\n” > ~/.ssh/config’
 
     script:
-        - echo "Deploying..."
+        - echo "Deploying now..."
         #- cat $SSH_PRIVATE_KEY
         #- chmod 700 iBial.pem
         - ssh ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
