@@ -8,19 +8,21 @@ stages:
 
 image: alpine
 
-build_a:
+build:
     stage: build
     script:
         - echo " Build a"
 
-test_a:
+test:
     stage: test
     script:
         - echo " test a"
 
-deploy_b:
+deploy:
     stage: deploy
     script:
         - echo "Deploying..."
         #- cat $SSH_PRIVATE_KEY
-        - ssh -i "$SSH_PRIVATE_KEY" ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
+        - echo $SSH_PRIVATE_KEY | tr -d '\r' > iBial.pem
+        - chmod 700 iBial.pem
+        - ssh -i "iBial.pem" ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
