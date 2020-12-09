@@ -89,5 +89,3 @@ sw.*
 # Vim swap files
 *.swp
 
-#CI/CD
-.gitlab-ci.yml
