@@ -1,42 +1,34 @@
 
 
 stages:
-    - build
-    - test
+  #  - build
+  #  - test
     - deploy
 
 image: alpine
 
-build:
-    stage: build
-    script:
-        - echo " Build a"
+#build:
+   #stage: build
+    #script:
+    #    - echo " Build a"
 
-test:
-    stage: test
-    script:
-        - echo " test a"
+#test:
+   # stage: test
+   #script:
+    #    - echo " test a"
 
 deploy:
     stage: deploy
-
     before_script:
-#    - 'command -v ssh-agent >/dev/null || (apk --update add openssh-client)'
-#    - mkdir -p ~/.ssh
-#    - echo -e $SSH_PRIVATE_KEY > ~/.ssh/id_rsa
-#    - chmod 400 ~/.ssh/id_rsa
+        - apk add openssh-client
+        - eval $(ssh-agent -s)
+        - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+    #script:
+       # - ssh -o StrictHostKeyChecking=no bitnami@ec2-54-211-223-19.compute-1.amazonaws.com "cd ~; touch test.txt"
 
-      # Setup SSH deploy keys
-    - 'which ssh-agent || ( apk --update add openssh-client )'
-    - cat $SSH_PRIVATE_KEY > iBial.pem
-    - cat iBial.pem
-    - echo " " >> iBial.pem
-    - cat iBial.pem
-    #- eval $(ssh-agent -s)
-    #- printenv $SSH_PRIVATE_KEY | ssh-add -
-    #- mkdir -p ~/.ssh
-    #- '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-
-    script:
-        - echo "Deploying now..."
-        - ssh -i "iBial.pem" ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
+        script:
+            - echo "Deploying now..."
+            #- ssh -i "iBial.pem" ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
+            - ssh -o StrictHostKeyChecking=no ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
