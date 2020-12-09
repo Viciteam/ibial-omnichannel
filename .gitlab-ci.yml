@@ -3,7 +3,7 @@ stages:
     - test
     - deploy
 
-image: omnichannel
+image: alpine
 
 build_a: 
     stage: build
