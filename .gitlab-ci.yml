@@ -5,33 +5,17 @@ stages:
 
 image: alpine
 
-build_a: 
+build_a:
     stage: build
-    script: 
+    script:
         - echo " Build a"
 
-build_b: 
-    stage: build
-    script: 
-        - echo " Build b"
-
-
-test_a: 
+test_a:
     stage: test
-    script: 
+    script:
         - echo " test a"
 
-test_b: 
-    stage: test
-    script: 
-        - echo " test b"
-
-deploy_a: 
+deploy_b:
     stage: deploy
-    script: 
-        - echo " deploy a"
-
-deploy_b: 
-    stage: deploy
-    script: 
-        - echo " deploy b"
+    script:
+        - ssh ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
