@@ -10,7 +10,7 @@ image: alpine
 #build:
    #stage: build
     #script:
-    #    - echo " Build a"
+    ##    - echo " Build a"
 
 #test:
    # stage: test
