@@ -28,11 +28,13 @@ deploy:
 
       # Setup SSH deploy keys
     - 'which ssh-agent || ( apk --update add openssh-client )'
-    - eval $(ssh-agent -s)
-    - printenv $SSH_PRIVATE_KEY | ssh-add -
-    - mkdir -p ~/.ssh
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - cat $SSH_PRIVATE_KEY > iBial.pem
+    - cat iBial.pem
+    #- eval $(ssh-agent -s)
+    #- printenv $SSH_PRIVATE_KEY | ssh-add -
+    #- mkdir -p ~/.ssh
+    #- '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
     script:
         - echo "Deploying now..."
-        - ssh ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
+        #- ssh ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
