@@ -1,9 +1,8 @@
-import colors from 'vuetify/es5/util/colors'
-
 require('dotenv').config()
 
 export default {
-  mode: 'universal',
+  target: 'static',
+  mode: 'spa',
   server: {
     port: process.env.APP_PORT,
     host: process.env.APP_HOST
