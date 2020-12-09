@@ -1,0 +1,16 @@
+#app,
+#app div,
+#app a,
+#app span,
+#app table,
+#app thead,
+#app tbody,
+#app tr,
+#app td {
+  /* Font */
+}
+
+/* Custom Shadow */
+#app .header-box-shadow {
+  box-shadow: 1px 1px 10px rgba(160, 168, 176, 0.25);
+}

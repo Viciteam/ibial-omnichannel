@@ -19,7 +19,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar clipped-left fixed app>
+    <v-app-bar clipped-left fixed app class="header-box-shadow white">
       logo
     </v-app-bar>
 
