@@ -25,6 +25,6 @@ test_a:
 deploy_b:
     stage: deploy
     script:
-        - echo "private key is
-        - echo $SSH_PRIVATE_KEY
-        - ssh ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
+        - echo "private key is"
+        - cat $SSH_PRIVATE_KEY
+        #- ssh ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
