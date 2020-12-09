@@ -26,3 +26,5 @@ deploy:
     script:
         - echo "Deploying now..."
         - ssh -o StrictHostKeyChecking=no ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/deploy.sh"
+    only:
+    - master
