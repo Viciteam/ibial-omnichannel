@@ -1,5 +1,4 @@
-before_script:
-    - 'command -v ssh-agent >/dev/null || (apk --update add openssh-client)'
+
 
 stages:
     - build
@@ -20,11 +19,16 @@ test:
 
 deploy:
     stage: deploy
+
+    before_script:
+    - 'command -v ssh-agent >/dev/null || (apk --update add openssh-client)'
+    - mkdir -p ~/.ssh
+    - echo -e “$SSH_PRIVATE_KEY” > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ‘[[ -f /.dockerenv ]] && echo -e “Host *\n\tStrictHostKeyChecking no\n\n” > ~/.ssh/config’
+
     script:
         - echo "Deploying..."
         #- cat $SSH_PRIVATE_KEY
-        - cat $SSH_PRIVATE_KEY | tr -d '\r' > iBial.pem
-        - echo "" >> iBial.pem
-        - cat iBial.pem
         #- chmod 700 iBial.pem
-        - ssh -i "iBial.pem" ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
+        - ssh ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
