@@ -28,7 +28,7 @@ deploy:
     #script:
        # - ssh -o StrictHostKeyChecking=no bitnami@ec2-54-211-223-19.compute-1.amazonaws.com "cd ~; touch test.txt"
 
-        script:
-            - echo "Deploying now..."
-            #- ssh -i "iBial.pem" ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
-            - ssh -o StrictHostKeyChecking=no ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
+    script:
+        - echo "Deploying now..."
+        #- ssh -i "iBial.pem" ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
+        - ssh -o StrictHostKeyChecking=no ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
