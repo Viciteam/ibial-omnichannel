@@ -47,6 +47,6 @@ export default {}
 }
 #app .header__avatar--border {
   border: 1px solid #d1d1d1;
-  padding: 2px;
+  padding: 3px;
 }
 </style>
