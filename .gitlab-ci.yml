@@ -35,6 +35,4 @@ deploy:
 
     script:
         - echo "Deploying now..."
-        #- cat ~/.ssh/id_rsa
-        #- cat /root/.ssh/id_rsa
         - ssh ubuntu@ec2-34-220-156-84.us-west-2.compute.amazonaws.com  "sudo bash /var/www/html/test.sh"
