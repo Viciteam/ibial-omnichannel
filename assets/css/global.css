@@ -8,6 +8,7 @@
 #app tr,
 #app td {
   /* Font */
+  font-family: 'Poppins', sans-serif !important;
 }
 
 /* Custom Shadow */
