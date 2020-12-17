@@ -1,5 +1,5 @@
 <template>
-  <v-card flat class="pb-4">
+  <v-card flat class="pb-4" link>
     <v-card-title>
       <v-badge
         offset-y="39"

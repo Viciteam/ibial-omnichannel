@@ -1,7 +1,10 @@
 <template>
-  <v-layout column class="fill-height overflow-auto leftSidebar__width--max">
+  <v-layout
+    column
+    class="fill-height overflow-auto leftSidebar__width--max outline--right-default"
+  >
     <v-flex class="flex shrink">
-      <v-card-title class="body-2 font-weight-bold">
+      <v-card-title class="body-2 font-weight-bold outline--bottom-default">
         <span>
           Live Chats
         </span>
@@ -15,7 +18,7 @@
     </v-flex>
 
     <v-flex class="flex shrink">
-      <v-card-title class="body-2 font-weight-medium">
+      <v-card-title class="body-2 font-weight-medium outline--bottom-default">
         <v-menu offset-y nudge-width="75">
           <template v-slot:activator="{ on, attrs }">
             <span v-bind="attrs" v-on="on">
@@ -38,7 +41,7 @@
     </v-flex>
 
     <v-flex class="flex shrink">
-      <v-card-title class="py-2 body-2">
+      <v-card-title class="py-2 body-2 mt-2">
         <v-text-field
           height="40px"
           prepend-inner-icon="mdi-magnify"
@@ -100,6 +103,12 @@ export default {
 }
 #app .search-box__container {
   border: 1px solid #f2f2f2;
+}
+.outline--right-default {
+  border-right: 1px solid #f2f2f2;
+}
+.outline--bottom-default {
+  border-bottom: 1px solid #f2f2f2;
 }
 </style>
 

@@ -1,7 +1,10 @@
 <template>
-  <v-layout column class="fill-height middleContainer__width--max">
+  <v-layout
+    column
+    class="fill-height middleContainer__width--max outline--right-default"
+  >
     <v-flex class="flex shrink">
-      <v-card-title class="body-2 font-weight-bold">
+      <v-card-title class="body-2 font-weight-bold outline--bottom-default">
         <span>
           Visitor Name
         </span>
@@ -106,17 +109,47 @@
         </v-card>
       </v-card>
     </v-flex>
-    <v-flex class="white--text blue flex shrink darken-3">
-      <v-card-text>
-        Footer
-      </v-card-text>
+    <v-flex class="white--text flex shrink pa-4">
+      <v-card flat class="outline---default-color">
+        <v-tabs
+          v-model="postField"
+          color="primary"
+          height="40"
+          class="px-4 py-2"
+        >
+          <v-tab
+            v-for="item in postFieldTabs"
+            :key="item"
+            class="text-capitalize"
+          >
+            {{ item }}
+          </v-tab>
+        </v-tabs>
+
+        <v-tabs-items v-model="postField">
+          <v-tab-item key="0" transition="fade" reverse-transition="fade">
+            <ChatPostField />
+          </v-tab-item>
+          <v-tab-item key="1" transition="fade" reverse-transition="fade">
+            <EmailPostField />
+          </v-tab-item>
+        </v-tabs-items>
+      </v-card>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
+import { ChatPostField, EmailPostField } from './center-section'
+
 export default {
+  components: {
+    ChatPostField,
+    EmailPostField
+  },
   data: () => ({
+    postField: 0,
+    postFieldTabs: ['Chats', 'Email'],
     chatType: 'Agent',
     items: ['Agent', 'Agent 1', 'Agent 2', 'Agent 3'],
     messages: [
@@ -200,6 +233,12 @@ export default {
 }
 .outline---default-color {
   border: 1px solid #f2f2f2;
+}
+.outline--right-default {
+  border-right: 1px solid #f2f2f2;
+}
+.outline--bottom-default {
+  border-bottom: 1px solid #f2f2f2;
 }
 .agentType__container {
   max-width: 130px;
