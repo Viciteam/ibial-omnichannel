@@ -19,7 +19,7 @@
       </v-card-title>
     </v-flex>
     <v-flex class="flex overflow-auto __width--max center--position">
-      <div class="px-3 pb-6">
+      <div class="body-2 px-3 pb-6">
         <v-row>
           <v-col cols="1">
             <v-avatar size="40" color="#CEDAFF">
@@ -95,7 +95,7 @@
         </v-row>
       </div>
     </v-flex>
-    <v-flex class="flex shrink pa-4">
+    <v-flex class="flex body-2 shrink pa-4">
       <div
         class="border--shadow px-3 pb-2 reply--area __width--max center--position"
       >
