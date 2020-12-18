@@ -14,7 +14,6 @@
     </v-row>
     <OpenTickets v-if="selectedRoute === 'Open'" />
     <AllTickets v-if="selectedRoute === 'All'" />
-
     <v-dialog v-model="filterDialog" width="400">
       <FilterDialog :category="selectedRoute" />
     </v-dialog>
@@ -23,7 +22,7 @@
 
 <script>
 import { OpenTickets, AllTickets } from './categories'
-import FilterDialog from './FilterDialog'
+import { FilterDialog } from '@/components/tickets'
 export default {
   components: {
     FilterDialog,
@@ -38,7 +37,8 @@ export default {
   },
   data() {
     return {
-      filterDialog: false
+      filterDialog: false,
+      newTicketDialog: false
     }
   },
   computed: {

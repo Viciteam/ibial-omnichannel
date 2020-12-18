@@ -4,7 +4,11 @@
       <v-col cols="3" class="d-flex justify-space-between mr-0 px-6 pt-3">
         <span class="font-weight-bold body-2 pt-3">Tickets</span>
         <span class="py-0">
-          <v-btn rounded class="color_primary white--text text-capitalize">
+          <v-btn
+            rounded
+            class="color_primary white--text text-capitalize"
+            @click="newTicketDialog = !newTicketDialog"
+          >
             <v-icon left>mdi-plus</v-icon>
             New
           </v-btn>
@@ -22,8 +26,25 @@
         ></v-text-field>
       </v-col>
     </v-row>
+    <v-dialog v-model="newTicketDialog" width="600">
+      <NewTicketDialog />
+    </v-dialog>
   </div>
 </template>
+
+<script>
+import { NewTicketDialog } from '@/components/tickets'
+export default {
+  components: {
+    NewTicketDialog
+  },
+  data() {
+    return {
+      newTicketDialog: false
+    }
+  }
+}
+</script>
 
 <style scoped>
 .color_primary {
