@@ -200,7 +200,7 @@ export default {
   max-width: 75%;
 }
 .__width--max {
-  max-width: 70% !important;
+  max-width: 80% !important;
 }
 .center--position {
   margin: 0 auto;
