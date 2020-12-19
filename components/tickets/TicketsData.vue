@@ -22,7 +22,7 @@
 
 <script>
 import { OpenTickets, AllTickets } from './categories'
-import { FilterDialog } from '@/components/tickets'
+import FilterDialog from '@/components/tickets/FilterDialog.vue'
 export default {
   components: {
     FilterDialog,

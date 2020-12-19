@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { NewTicketDialog } from '@/components/tickets'
+import NewTicketDialog from '@/components/tickets/NewTicketDialog.vue'
 export default {
   components: {
     NewTicketDialog
