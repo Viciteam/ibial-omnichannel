@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TicketsData :selected="items" />
+    <TicketsData :data="data" :selected="items" />
   </div>
 </template>
 
@@ -13,6 +13,10 @@ export default {
   props: {
     items: {
       type: String,
+      default: null
+    },
+    data: {
+      type: Array,
       default: null
     }
   }

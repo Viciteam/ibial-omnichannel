@@ -20,7 +20,7 @@
           </v-col>
         </v-row>
         <v-row
-          v-for="item in data"
+          v-for="item in tickets"
           :key="item.id"
           class="body-2 bottom_border tickets"
           @click="action(item)"
@@ -41,29 +41,29 @@
                 </v-badge>
               </v-col>
               <v-col cols="9" class="py-0">
-                <v-row class="font-weight-bold">
-                  {{ item.name }}
+                <v-row class="font-weight-bold text-capitalize">
+                  {{ item.requester }}
                 </v-row>
-                <v-row class="caption medium--gray">
-                  {{ item.email }}
+                <v-row class="caption medium--gray text-truncate">
+                  {{ item.email.replace('>', '') }}
                 </v-row>
               </v-col>
             </v-row>
           </v-col>
           <v-col cols="3" class="pt-6">
-            {{ item.subject }}
+            {{ item.subject.replace(/['"]+/g, '') }}
             <span class="medium--gray">{{ item.tag }}</span>
           </v-col>
           <v-col cols="2" class="pt-6">
-            {{ item.assignee }}
+            {{ item.assignee === '' ? 'Unassigned' : item.assignee }}
           </v-col>
           <v-col cols="2" class="pt-6">
             <v-chip x-small class="text-uppercase" :class="item.status">
-              {{ item.status }}
+              {{ item.status === '' ? 'New' : item.status }}
             </v-chip>
           </v-col>
           <v-col cols="2" class="pt-6">
-            {{ item.date }}
+            {{ item.ts }}
           </v-col>
         </v-row>
       </v-col>
@@ -73,60 +73,23 @@
 
 <script>
 export default {
+  props: {
+    data: {
+      type: Array,
+      default: null
+    }
+  },
   data() {
-    return {
-      data: [
-        {
-          id: 1,
-          name: 'Name',
-          email: 'name@email.com',
-          subject: 'Marketing kit for affiliate.',
-          assignee: 'Product Team',
-          tag: '#005',
-          status: 'new',
-          date: 'Yesterday'
-        },
-        {
-          id: 2,
-          name: 'Name',
-          email: 'name@email.com',
-          subject: 'Ticket subject title here.',
-          assignee: 'Agent',
-          tag: '#005',
-          status: 'open',
-          date: 'Nov 12 2020'
-        },
-        {
-          id: 3,
-          name: 'Name',
-          email: 'name@email.com',
-          subject: 'Saas partnership talk with tech team..',
-          assignee: 'Sales Team',
-          tag: '#005',
-          status: 'pending',
-          date: 'Nov 03 2020'
-        },
-        {
-          id: 4,
-          name: 'Name',
-          email: 'name@email.com',
-          subject: 'Re: Cones of Dunshire.',
-          assignee: 'Leslie',
-          tag: '#008',
-          status: 'on hold',
-          date: 'Nov 03 2020'
-        },
-        {
-          id: 5,
-          name: 'Name',
-          email: 'name@email.com',
-          subject: 'Bugs here.',
-          assignee: 'Carter',
-          tag: '#005',
-          status: 'resolved',
-          date: 'Nov 03 2020'
-        }
-      ]
+    return {}
+  },
+  computed: {
+    tickets() {
+      return this.data.filter((d) => {
+        return (
+          (d.requester = d.from.split('<')[0].replace(/['"]+/g, '')),
+          (d.email = d.from.split('<')[1])
+        )
+      })
     }
   },
   methods: {

@@ -9,10 +9,10 @@
         </v-row>
         <v-row>
           <v-col cols="3" class="py-0">
-            <TicketsDrawer @itemSelected="items" />
+            <TicketsDrawer :data="tickets" @itemSelected="items" />
           </v-col>
           <v-col cols="9" class="left_border py-0">
-            <TicketsContent :items="item" />
+            <TicketsContent :data="tickets" :items="item" />
           </v-col>
         </v-row>
       </v-col>
@@ -35,13 +35,30 @@ export default {
   },
   data() {
     return {
-      item: null
+      item: null,
+      tickets: []
     }
+  },
+  mounted() {
+    this.getTickets()
   },
   methods: {
     items(value) {
       this.item = value
-      console.log('items ->' + value)
+    },
+    async getTickets() {
+      try {
+        await this.$ticketsRepository
+          .getTickets()
+          //.AllContacts()
+          .then((response) => {
+            //console.log(response.emails)
+            this.tickets = response.emails
+          })
+        // eslint-disable-next-line no-empty
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }

@@ -12,8 +12,8 @@
         </v-btn>
       </v-col>
     </v-row>
-    <OpenTickets v-if="selectedRoute === 'Open'" />
-    <AllTickets v-if="selectedRoute === 'All'" />
+    <OpenTickets v-if="selectedRoute === 'Open'" :data="data" />
+    <AllTickets v-if="selectedRoute === 'All'" :data="data" />
     <v-dialog v-model="filterDialog" width="400">
       <FilterDialog :category="selectedRoute" />
     </v-dialog>
@@ -32,6 +32,10 @@ export default {
   props: {
     selected: {
       type: String,
+      default: null
+    },
+    data: {
+      type: Array,
       default: null
     }
   },

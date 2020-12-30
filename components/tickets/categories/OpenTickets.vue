@@ -17,7 +17,7 @@
           </v-col>
         </v-row>
         <v-row
-          v-for="item in data"
+          v-for="item in opentickets"
           :key="item.id"
           class="body-2 bottom_border tickets"
           @click="action(item)"
@@ -38,26 +38,26 @@
                 </v-badge>
               </v-col>
               <v-col cols="9" class="py-0">
-                <v-row class="font-weight-bold">
-                  {{ item.name }}
+                <v-row class="font-weight-bold text-capitalize">
+                  {{ item.requester }}
                 </v-row>
                 <v-row class="caption medium--gray">
-                  {{ item.email }}
+                  {{ item.email.replace('>', '') }}
                 </v-row>
               </v-col>
             </v-row>
           </v-col>
           <v-col cols="4" class="pt-6">
-            {{ item.subject }}
-            <span class="medium--gray">{{ item.tag }}</span>
+            {{ item.subject.replace(/['"]+/g, '') }}
+            <span class="medium--gray">#{{ item.id }}</span>
           </v-col>
           <v-col cols="2" class="pt-6">
             <v-chip x-small class="text-uppercase" :class="item.status">
-              {{ item.status }}
+              {{ item.status === '' ? 'Open' : item.status }}
             </v-chip>
           </v-col>
           <v-col cols="2" class="pt-6">
-            {{ item.date }}
+            {{ item.ts }}
           </v-col>
         </v-row>
       </v-col>
@@ -67,55 +67,25 @@
 
 <script>
 export default {
+  props: {
+    data: {
+      type: Array,
+      default: null
+    }
+  },
   data() {
-    return {
-      data: [
-        {
-          id: 1,
-          name: 'Name',
-          email: 'name@email.com',
-          subject: 'Ticket subject title here.',
-          tag: '#005',
-          status: 'open',
-          date: 'Yesterday'
-        },
-        {
-          id: 2,
-          name: 'Name',
-          email: 'name@email.com',
-          subject: 'Ticket subject title here.',
-          tag: '#005',
-          status: 'open',
-          date: 'Nov 12 2020'
-        },
-        {
-          id: 3,
-          name: 'Name',
-          email: 'name@email.com',
-          subject: 'Ticket subject title here.',
-          tag: '#005',
-          status: 'open',
-          date: 'Nov 03 2020'
-        },
-        {
-          id: 4,
-          name: 'Name',
-          email: 'name@email.com',
-          subject: 'Ticket subject title here.',
-          tag: '#005',
-          status: 'open',
-          date: 'Nov 03 2020'
-        },
-        {
-          id: 5,
-          name: 'Name',
-          email: 'name@email.com',
-          subject: 'Ticket subject title here.',
-          tag: '#005',
-          status: 'open',
-          date: 'Nov 03 2020'
+    return {}
+  },
+  computed: {
+    opentickets() {
+      return this.data.filter((d) => {
+        if (d.status === '') {
+          return (
+            (d.requester = d.from.split('<')[0].replace(/['"]+/g, '')),
+            (d.email = d.from.split('<')[1])
+          )
         }
-      ]
+      })
     }
   },
   methods: {

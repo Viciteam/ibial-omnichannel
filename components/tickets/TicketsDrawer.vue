@@ -47,7 +47,9 @@
                         i === selectedItem ? 'color_primary white--text' : ''
                       "
                     >
-                      {{ item.value }}
+                      {{
+                        item.title === 'Open' ? OpenTickets.length : item.value
+                      }}
                     </v-chip>
                   </v-list-item-action>
                 </v-list-item>
@@ -62,7 +64,7 @@
             >
               <v-list-item-content>
                 <v-list-item-title class="body-2"
-                  >All Tickets({{ allTickets }})</v-list-item-title
+                  >All Tickets({{ data.length }})</v-list-item-title
                 >
               </v-list-item-content>
             </v-list-item>
@@ -75,6 +77,12 @@
 
 <script>
 export default {
+  props: {
+    data: {
+      type: Array,
+      default: null
+    }
+  },
   data() {
     return {
       selectedItem: 0,
@@ -86,8 +94,7 @@ export default {
       items: [
         {
           active: true,
-          title: 'Open',
-          value: 5
+          title: 'Open'
         },
         {
           title: 'Pending',
@@ -102,6 +109,15 @@ export default {
           value: 35
         }
       ]
+    }
+  },
+  computed: {
+    OpenTickets() {
+      return this.data.filter((d) => {
+        if (d.status === '') {
+          return this.data
+        }
+      })
     }
   },
   mounted() {

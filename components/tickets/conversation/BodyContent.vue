@@ -7,8 +7,8 @@
           <span>
             <v-icon>mdi-chevron-right</v-icon>
           </span>
-          <span>{{ details.subject }}</span>
-          <span class="medium--gray">{{ details.tag }}</span>
+          <span>{{ details.subject.replace(/['"]+/g, '') }}</span>
+          <span class="medium--gray">#{{ details.id }}</span>
         </div>
 
         <v-spacer />
@@ -28,13 +28,17 @@
           </v-col>
           <v-col>
             <div>
-              <span class="font-weight-bold">Ron Swanson</span>
+              <span class="font-weight-bold text-capitalize">
+                {{ details.requester }}
+              </span>
               <span class="font-weight-light">submitted via email</span>
-              &lt;<span class="medium--gray">customer@email.com</span>&gt;
+              &lt;<span class="medium--gray">
+                {{ details.email.replace('>', '') }} </span
+              >&gt;
             </div>
             <div class="caption">
               To:
-              <span class="medium--gray">sample@email.com</span>
+              <span class="medium--gray">{{ details.to }}</span>
             </div>
           </v-col>
           <v-col cols="3" class="text-right">
@@ -46,14 +50,15 @@
         <v-row class="bottom_border">
           <v-col cols="1"></v-col>
           <v-col>
-            <p>Hello</p>
+            <p><span v-html="details.body"></span></p>
+            <!--<p>Hello</p>
             <p>Lorem ipsum dolor sit amet.</p>
             <p>
               An pro assum minim quaestio, ludus offendit ad mel. Pro dicta
               doctus dissentiunt eu. Pri doctus legimus scaevola ne. In eum tale
               hendrerit. Quas consulatu mea id. Agam dignissim id cum, et quem
               ullum eum, iuvaret detracto voluptaria.
-            </p>
+            </p>-->
           </v-col>
         </v-row>
         <v-row class="bottom_border">
