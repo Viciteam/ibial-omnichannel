@@ -6,11 +6,13 @@
     class="header-box-shadow white pa-0 pr-5 header__container"
     height="60"
   >
-    <v-img
-      src="/logo/ibial-logo.svg"
-      alt="ibial logo"
-      max-width="max-content"
-    ></v-img>
+    <router-link to="/">
+      <v-img
+        src="/logo/ibial-logo.svg"
+        alt="ibial logo"
+        max-width="max-content"
+      ></v-img>
+    </router-link>
 
     <v-spacer />
 
